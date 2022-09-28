@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <style>
+        .flex-div{
+    display: flex;
+    align-items: center;
+}
+nav{
+    padding: 10px 2%;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.right img{
+    width: 25px;
+    margin-right: 25px;
+}
+.right>img:last-child{
+    border-radius: 50%;
+    width: 40px;
+    margin-right: 0px;
+}
+.left .menu{
+    width: 20px;
+    margin-right:25px ;
+}
+
+.left .logo{
+    width: 120px;
+}
+.middle .mic{
+    width: 16px;
+}
+.middle .searchbox{
+    border: 1px solid #ccc;
+    margin-right: 15px;
+    padding: 8px 12px;
+    /* border-radius: 25px; */
+}
+
+.middle .searchbox input{
+    width: 400px;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+    height: 80vh;
+    margin: auto;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+</head>
+
+<body onload="video()">
+    
+<nav class="flex-div">
+    <div class="left flex-div">
+        <img src="/images/menu.png" alt="" class="menu">
+        <img src="/images/logo.png" alt="" class="logo">
+    </div>
+    <div class="middle flex-div">
+        <div class="searchbox flex-div">
+            <input type="text" placeholder="search" id="inputsearch">
+            <img src="/images/search.png" alt="" id="searchbutton" onclick="search()">
+        </div>
+       <img src="/images/voice-search.png" class="mic" alt="">
+    </div>
+    <div class="right flex-div">
+        <img src="/images/upload.png" alt="">
+        <img src="/images/more.png" alt="">
+        <img src="/images/notification.png" alt="">
+        <img src="/images/Jack.png" alt="">
+    </div>
+</nav>   
+    <box>
+    <iframe width="560" height="315" src="" id ="video" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h3 id="heading"></h3>
+    <p id = "channel"></p>
+    </box>
+</body>
+
+</html>
+
+<script>
+    let heading = document.querySelector("#heading")
+    let channel = document.querySelector("#channel")
+
+    let video = () =>{
+     let link =   JSON.parse(localStorage.getItem("video"))
+     let id = link.id.videoId
+     console.log(id)
+     heading.innerText = link.snippet.title
+     let videosrc = document.querySelector("#video")
+     videosrc.src = `https://www.youtube.com/embed/${id}`
+    
+    }
+</script>
